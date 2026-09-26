@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Herramientas del Estudiante</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <h1>🧰 Herramientas del Estudiante</h1>
+    <p class="subtitulo-general">Propina · IMC · Utilidades — todo en un solo lugar</p>
+  </header>
+
+  <main class="contenedor-principal">
+
+    <!-- ===================================================== -->
+    <!-- CONTENEDOR 1: CALCULADORA DE PROPINA -->
+    <!-- ===================================================== -->
+    <section class="card" id="cardPropina">
+      <h2>💵 Calculadora de Propina</h2>
+      <p class="subtitulo">Calcula la propina y el total de tu cuenta.</p>
+
+      <div class="campo">
+        <label for="montoPropina">Monto de la cuenta ($)</label>
+        <input
+          type="number"
+          id="montoPropina"
+          placeholder="Ej: 100.00"
+          min="0"
+          step="0.01"
+        >
+      </div>
+
+      <div class="campo">
+        <label for="porcentajeRange">
+          Porcentaje de propina: <span id="etiquetaPorcentaje">15</span>%
+        </label>
+        <div class="grupo-rango">
+          <input
+            type="range"
+            id="porcentajeRange"
+            min="0"
+            max="100"
+            step="1"
+            value="15"
+            oninput="actualizarPorcentaje('range')"
+          >
+          <input
+            type="number"
+            id="porcentajeNumero"
+            min="0"
+            max="100"
+            step="1"
+            value="15"
+            oninput="actualizarPorcentaje('numero')"
+          >
+          <span class="signo-porcentaje">%</span>
+        </div>
+      </div>
+
+      <button onclick="calcularPropina()">Calcular Propina</button>
+
+      <div id="visorPropina" class="visor">Los resultados aparecerán aquí.</div>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- CONTENEDOR 2: CALCULADORA DE IMC -->
+    <!-- ===================================================== -->
+    <section class="card" id="cardIMC">
+      <h2>⚖️ Calculadora de IMC</h2>
+      <p class="subtitulo">Calcula tu Índice de Masa Corporal y su categoría.</p>
+
+      <div class="campo">
+        <label for="pesoIMC">Peso (kg)</label>
+        <input type="number" id="pesoIMC" placeholder="Ej: 70" min="0" step="0.1">
+      </div>
+
+      <div class="campo">
+        <label for="alturaIMC">Altura (m)</label>
+        <input type="number" id="alturaIMC" placeholder="Ej: 1.70" min="0" step="0.01">
+      </div>
+
+      <button onclick="calcularIMC()">Calcular IMC</button>
+
+      <div id="visorIMC" class="visor">Los resultados aparecerán aquí.</div>
+
+      <div class="grafica-imc">
+        <div class="barra-imc">
+          <div class="segmento seg-bajo">Bajo peso</div>
+          <div class="segmento seg-normal">Normal</div>
+          <div class="segmento seg-sobrepeso">Sobrepeso</div>
+          <div class="segmento seg-obesidad">Obesidad</div>
+        </div>
+        <div class="indicador-imc" id="indicadorIMC" style="left: 0%;">
+          <span class="flecha-imc">▲</span>
+          <span class="etiqueta-imc" id="etiquetaIndicadorIMC"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- CONTENEDOR 3: MENÚ DE UTILIDADES -->
+    <!-- ===================================================== -->
+    <section class="card" id="cardUtilidades">
+      <h2>🧮 Utilidades</h2>
+      <p class="subtitulo">Elige una opción y completa los datos.</p>
+
+      <div class="campo">
+        <label for="opcionUtilidad">Selecciona una opción</label>
+        <select id="opcionUtilidad" onchange="mostrarCamposUtilidad()">
+          <option value="1">1. Celsius → Fahrenheit</option>
+          <option value="2">2. Precio con IVA</option>
+          <option value="3">3. Nota → Calificación</option>
+        </select>
+      </div>
+
+      <!-- Opción 1: Celsius -> Fahrenheit -->
+      <div class="subcampos" id="camposOpcion1">
+        <div class="campo">
+          <label for="celsiusInput">Grados Celsius</label>
+          <input type="number" id="celsiusInput" placeholder="Ej: 25" step="0.1">
+        </div>
+      </div>
+
+      <!-- Opción 2: Precio con IVA -->
+      <div class="subcampos oculto" id="camposOpcion2">
+        <div class="campo">
+          <label for="precioInput">Precio</label>
+          <input type="number" id="precioInput" placeholder="Ej: 100000" min="0" step="0.01">
+        </div>
+        <div class="campo">
+          <label for="ivaInput">Porcentaje de IVA (%)</label>
+          <input type="number" id="ivaInput" placeholder="Ej: 19" min="0" step="0.1" value="19">
+        </div>
+      </div>
+
+      <!-- Opción 3: Nota -> Calificación -->
+      <div class="subcampos oculto" id="camposOpcion3">
+        <div class="campo">
+          <label for="notaInput">Nota (0 a 100)</label>
+          <input type="number" id="notaInput" placeholder="Ej: 85" min="0" max="100" step="0.1">
+        </div>
+      </div>
+
+      <button onclick="calcularUtilidad()">Calcular</button>
+
+      <div id="visorUtilidades" class="visor">Los resultados aparecerán aquí.</div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <p>Hecho con HTML, CSS y JavaScript.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

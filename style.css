@@ -1,0 +1,343 @@
+/* =========================================================
+   VARIABLES
+========================================================= */
+:root {
+  --fondo: #0f1117;
+  --fondo-degradado: radial-gradient(circle at 20% 0%, #1b1f2c 0%, #0f1117 55%);
+  --tarjeta: #171a23;
+  --borde: #262b38;
+  --texto: #eceef3;
+  --texto-muted: #9aa1b2;
+  --primario: #6366f1;
+  --primario-claro: #818cf8;
+  --primario-oscuro: #4338ca;
+  --acento: #22d3ee;
+  --error: #f87171;
+  --error-fondo: #2a1418;
+  --exito: #34d399;
+
+  --bajo: #60a5fa;
+  --normal: #34d399;
+  --sobrepeso: #fbbf24;
+  --obesidad: #f87171;
+
+  --radio: 16px;
+  --radio-chico: 10px;
+  --sombra: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   BASE
+========================================================= */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--fondo-degradado);
+  background-color: var(--fondo);
+  color: var(--texto);
+  font-family: "Segoe UI", "Inter", system-ui, Arial, sans-serif;
+  padding: 32px 20px 60px;
+}
+
+.encabezado {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.encabezado h1 {
+  font-size: 2rem;
+  margin: 0 0 6px;
+  letter-spacing: -0.02em;
+}
+
+.subtitulo-general {
+  color: var(--texto-muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.pie {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--texto-muted);
+  font-size: 0.8rem;
+}
+
+/* =========================================================
+   LAYOUT PRINCIPAL
+========================================================= */
+.contenedor-principal {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* =========================================================
+   TARJETAS
+========================================================= */
+.card {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 26px 24px;
+  box-shadow: var(--sombra);
+  display: flex;
+  flex-direction: column;
+}
+
+.card h2 {
+  margin: 0 0 4px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subtitulo {
+  color: var(--texto-muted);
+  font-size: 0.85rem;
+  margin: 0 0 20px;
+}
+
+/* =========================================================
+   CAMPOS DE FORMULARIO
+========================================================= */
+.campo {
+  margin-bottom: 18px;
+}
+
+.campo label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--texto);
+}
+
+.campo label span {
+  color: var(--acento);
+  font-weight: 700;
+}
+
+input[type="number"],
+select {
+  width: 100%;
+  padding: 11px 12px;
+  background: #0e1016;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-chico);
+  color: var(--texto);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="number"]:focus,
+select:focus {
+  border-color: var(--primario-claro);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+select {
+  cursor: pointer;
+}
+
+/* Grupo de rango (slider + número) para propina */
+.grupo-rango {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.grupo-rango input[type="range"] {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primario), var(--acento));
+  outline: none;
+}
+
+.grupo-rango input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid var(--primario);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.grupo-rango input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid var(--primario);
+  cursor: pointer;
+}
+
+.grupo-rango input[type="number"] {
+  width: 68px;
+  text-align: center;
+  flex: none;
+}
+
+.signo-porcentaje {
+  color: var(--texto-muted);
+  font-weight: 600;
+}
+
+/* Subcampos que se muestran/ocultan según la opción elegida */
+.subcampos.oculto {
+  display: none;
+}
+
+/* =========================================================
+   BOTONES
+========================================================= */
+button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 4px;
+  margin-bottom: 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--primario), var(--primario-oscuro));
+  border: none;
+  border-radius: var(--radio-chico);
+  cursor: pointer;
+  transition: transform 0.1s ease, filter 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+}
+
+button:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.45);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* =========================================================
+   VISOR DE RESULTADOS
+========================================================= */
+.visor {
+  background: #0e1016;
+  border: 1px dashed var(--borde);
+  border-radius: var(--radio-chico);
+  padding: 16px;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--texto);
+  min-height: 24px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.visor strong {
+  color: var(--acento);
+}
+
+.visor.actualizado {
+  animation: destello 0.5s ease;
+}
+
+@keyframes destello {
+  from {
+    background-color: #1b2033;
+  }
+  to {
+    background-color: #0e1016;
+  }
+}
+
+.visor.error {
+  color: var(--error);
+  border-color: var(--error);
+  background-color: var(--error-fondo);
+}
+
+/* =========================================================
+   GRÁFICA DE IMC
+========================================================= */
+.grafica-imc {
+  position: relative;
+  margin-top: 22px;
+}
+
+.barra-imc {
+  display: flex;
+  width: 100%;
+  height: 34px;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--borde);
+}
+
+.segmento {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #0f1117;
+  letter-spacing: 0.02em;
+}
+
+.seg-bajo { background: var(--bajo); }
+.seg-normal { background: var(--normal); }
+.seg-sobrepeso { background: var(--sobrepeso); }
+.seg-obesidad { background: var(--obesidad); }
+
+.indicador-imc {
+  position: absolute;
+  top: -26px;
+  left: 0%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: left 0.35s ease;
+  white-space: nowrap;
+}
+
+.flecha-imc {
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--texto);
+}
+
+.etiqueta-imc {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--acento);
+  margin-top: -2px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 640px) {
+  body {
+    padding: 24px 12px 40px;
+  }
+  .card {
+    padding: 20px 18px;
+  }
+  .encabezado h1 {
+    font-size: 1.6rem;
+  }
+}
